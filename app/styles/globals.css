@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+:root {
+  --opacity: 1;
+  --color-primary: hsl(255, 255, 255, var(--opacity));
+  --color-primary: rgba(255, 255, 255, 1);
+  --color-secondary: rgba(255, 255, 255, 0.8);
+  --color-glassy: rgba(255, 255, 255, 0.2);
+  --color-bg: #004c7e;
+  --color-text: #333333;
+
+  --border-radius-sm: 12px;
+  --border-radius-md: 24px;
+  --padding-md: 33px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+}
+
+input:focus,
+input:active {
+  outline: none;
+}
+
+.glassy-box {
+  background: var(--color-glassy);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glassy-container {
+  background: var(--color-glassy);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: var(--padding-md);
+  border-radius: var(--border-radius-md);
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 125%;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 125%;
+}
+
+h4 {
+  font-size: 1.125rem;
+  line-height: 125%;
+}
+
+h5 {
+  font-size: 14px;
+  line-height: 125%;
+  opacity: 0.7;
+  color: var(--color-primary);
+}
+
+p {
+  font-size: 14px;
+  line-height: 125%;
+  opacity: 0.7;
+  color: var(--color-primary);
+}
