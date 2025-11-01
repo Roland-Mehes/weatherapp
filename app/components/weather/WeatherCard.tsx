@@ -7,7 +7,8 @@ import iconMap from '@/app/constants/iconMap';
 const WeatherCard = () => {
   const weatherData = useWeatherStore((state) => state.weather);
 
-  if (!weatherData) return <div className="glassy-box">Search for a city</div>;
+  if (!weatherData)
+    return <div className="glassy-box rounded p-4">Search for a city</div>;
 
   const currentTime = weatherData.dt
     ? new Intl.DateTimeFormat('en-GB', {

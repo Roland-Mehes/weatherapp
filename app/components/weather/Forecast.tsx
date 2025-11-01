@@ -36,7 +36,7 @@ const Forecast = () => {
     });
   }, [forecast]);
 
-  if (!weather) return <div className="glassy-box p-4 rounded"></div>;
+  if (!weather) return;
 
   return (
     <div className="glassy-box rounded-[var(--border-radius-md)] p-5">

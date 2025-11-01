@@ -107,7 +107,7 @@ const AirQuality = () => {
   }
 
   if (!airQuality) {
-    return <div className="glassy-box p-4">No air quality data available.</div>;
+    return;
   }
 
   const c = airQuality.list[0].components;

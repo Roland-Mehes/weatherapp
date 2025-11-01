@@ -14,7 +14,7 @@ const SunTimes = () => {
     (state) => state.weather
   ) as SunTimesProps | null;
 
-  if (!weatherData) return <div className="glassy-box p-4">No data</div>;
+  if (!weatherData) return;
 
   const sunriseDate = new Date(weatherData.sys.sunrise * 1000);
   const sunsetDate = new Date(weatherData.sys.sunset * 1000);

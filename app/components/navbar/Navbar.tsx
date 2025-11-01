@@ -10,7 +10,7 @@ const Navbar = () => {
   const fetchWeather = useWeatherStore((state) => state.fetchWeather);
 
   const handleSearch = async () => {
-    const data = await fetchWeather(city);
+    await fetchWeather(city);
     setCity('');
   };
 
