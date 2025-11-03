@@ -3,12 +3,17 @@
 import Image from 'next/image';
 import { useWeatherStore } from '@/app/store/weatherStore';
 import iconMap from '@/app/constants/iconMap';
+import { BiLoader } from 'react-icons/bi';
 
 const WeatherCard = () => {
   const weatherData = useWeatherStore((state) => state.weather);
 
   if (!weatherData)
-    return <div className="glassy-box rounded p-4">Search for a city</div>;
+    return (
+      <div className="glassy-box rounded p-4 flex items-center gap-2 w-32 justify-center">
+        <BiLoader />
+      </div>
+    );
 
   const currentTime = weatherData.dt
     ? new Intl.DateTimeFormat('en-GB', {

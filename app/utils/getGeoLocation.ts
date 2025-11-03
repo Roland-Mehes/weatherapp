@@ -1,10 +1,12 @@
+import { toast } from 'react-toastify';
+
 const getGeoLocation = async (): Promise<{
   lat: number;
   lon: number;
 } | null> => {
   // SSR vagy nincs geolocation API
   if (typeof window === 'undefined' || !('geolocation' in navigator)) {
-    console.warn('Geolocation is not supported (SSR or no browser API)');
+    toast.error('Geolocation is not supported (SSR or no browser API)');
     return null;
   }
 
@@ -19,10 +21,16 @@ const getGeoLocation = async (): Promise<{
       }
     );
 
-    const { latitude, longitude } = position.coords;
+    const { latitude, longitude, accuracy } = position.coords;
+    console.log(`${accuracy} meters accuracy for geo location obtained.`);
+    navigator.geolocation.getCurrentPosition((pos) => {
+      console.log(
+        `Lat:  ${pos.coords.latitude}, Lon : ${pos.coords.longitude}`
+      );
+    });
     return { lat: latitude, lon: longitude };
   } catch (error) {
-    console.error('Error getting geolocation:', error);
+    toast.error('Error getting geolocation:');
     return null;
   }
 };
