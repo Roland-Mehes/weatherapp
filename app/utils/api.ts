@@ -1,14 +1,19 @@
 import api from './axiosClient';
 import type { AxiosError } from 'axios';
 
-export async function getCurrentWeather(city: string) {
+type CityOrCoords = string | { lat: number; lon: number };
+
+export async function getCurrentWeather(cityOrCoords: CityOrCoords) {
   try {
-    const res = await api.get('/weather', {
-      params: { q: city },
-    });
+    const isCoords = typeof cityOrCoords !== 'string';
+
+    const params = isCoords
+      ? { lat: cityOrCoords.lat, lon: cityOrCoords.lon }
+      : { q: cityOrCoords };
+
+    const res = await api.get('/weather', { params });
     return res.data;
   } catch (error: unknown) {
-    // check if the error is an AxiosError and if the HTTP response status is 404.
     const err = error as AxiosError;
 
     if (err?.response?.status === 404) {
@@ -27,7 +32,6 @@ export async function getForecast(city: string) {
     });
     return res.data;
   } catch (error) {
-    return;
     console.error('getForecast error:', error);
     throw new Error('Failed to fetch forecast data');
   }

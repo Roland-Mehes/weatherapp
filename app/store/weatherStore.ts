@@ -3,10 +3,18 @@ import { getCurrentWeather, getForecast, getAirQuality } from '../utils/api';
 import type { WeatherData, ForecastData, AirQualityData } from './types';
 import { toast } from 'react-toastify';
 
+import getGeoLocation from '../utils/getGeoLocation';
+
 interface WeatherState {
   weather: WeatherData | null;
   fetchWeather: (city: string) => Promise<void>;
+  fetchWeatherByLocation: () => Promise<void>;
 }
+
+(async () => {
+  const geoLocation = await getGeoLocation();
+  if (geoLocation) console.log('GeoLocation in Store:', geoLocation.lat);
+})();
 
 export const useWeatherStore = create<WeatherState>((set) => ({
   weather: null,
@@ -21,6 +29,28 @@ export const useWeatherStore = create<WeatherState>((set) => ({
     }
 
     set({ weather: data });
+  },
+
+  fetchWeatherByLocation: async () => {
+    try {
+      const geo = await getGeoLocation();
+      if (!geo) {
+        toast.error('Could not get your location.');
+        return;
+      }
+
+      // ✅ helyesen, objektumként adjuk át:
+      const data = await getCurrentWeather({ lat: geo.lat, lon: geo.lon });
+
+      if (data) {
+        set({ weather: data });
+      } else {
+        toast.error('Weather data not found for your location.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to get weather by location.');
+    }
   },
 }));
 

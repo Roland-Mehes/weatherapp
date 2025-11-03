@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useWeatherStore } from '../../store/weatherStore';
@@ -8,11 +8,16 @@ import { useWeatherStore } from '../../store/weatherStore';
 const Navbar = () => {
   const [city, setCity] = useState('');
   const fetchWeather = useWeatherStore((state) => state.fetchWeather);
+  const { weather, fetchWeatherByLocation } = useWeatherStore();
 
   const handleSearch = async () => {
     await fetchWeather(city);
     setCity('');
   };
+
+  useEffect(() => {
+    fetchWeatherByLocation();
+  }, [fetchWeatherByLocation]);
 
   return (
     <div className="flex flex-col gap-4 md:flex-row justify-between md:items-center py-3 ">
