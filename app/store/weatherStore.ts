@@ -11,11 +11,6 @@ interface WeatherState {
   fetchWeatherByLocation: () => Promise<void>;
 }
 
-(async () => {
-  const geoLocation = await getGeoLocation();
-  if (geoLocation) console.log('GeoLocation in Store:', geoLocation.lat);
-})();
-
 export const useWeatherStore = create<WeatherState>((set) => ({
   weather: null,
   fetchWeather: async (city: string) => {
@@ -34,22 +29,34 @@ export const useWeatherStore = create<WeatherState>((set) => ({
   fetchWeatherByLocation: async () => {
     try {
       const geo = await getGeoLocation();
+
       if (!geo) {
-        toast.error('Could not get your location.');
+        const data = await getCurrentWeather('Bucharest');
+        if (data) {
+          set({ weather: data });
+        }
+        toast.info('Could not get your location, showing Bukarest.');
         return;
       }
 
-      // ✅ helyesen, objektumként adjuk át:
+      // Fetch weather data using the obtained geolocation
       const data = await getCurrentWeather({ lat: geo.lat, lon: geo.lon });
 
       if (data) {
         set({ weather: data });
       } else {
         toast.error('Weather data not found for your location.');
+        const fallbackData = await getCurrentWeather('Bucharest');
+        if (fallbackData) {
+          set({ weather: fallbackData });
+        }
       }
     } catch (error) {
-      console.error(error);
       toast.error('Failed to get weather by location.');
+      const fallbackData = await getCurrentWeather('Bucharest');
+      if (fallbackData) {
+        set({ weather: fallbackData });
+      }
     }
   },
 }));

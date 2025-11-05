@@ -8,7 +8,7 @@ import { useWeatherStore } from '../../store/weatherStore';
 const Navbar = () => {
   const [city, setCity] = useState('');
   const fetchWeather = useWeatherStore((state) => state.fetchWeather);
-  const { weather, fetchWeatherByLocation } = useWeatherStore();
+  const { fetchWeatherByLocation } = useWeatherStore();
 
   const handleSearch = async () => {
     await fetchWeather(city);

@@ -21,16 +21,10 @@ const getGeoLocation = async (): Promise<{
       }
     );
 
-    const { latitude, longitude, accuracy } = position.coords;
-    console.log(`${accuracy} meters accuracy for geo location obtained.`);
-    navigator.geolocation.getCurrentPosition((pos) => {
-      console.log(
-        `Lat:  ${pos.coords.latitude}, Lon : ${pos.coords.longitude}`
-      );
-    });
+    const { latitude, longitude } = position.coords;
+
     return { lat: latitude, lon: longitude };
   } catch (error) {
-    toast.error('Error getting geolocation:');
     return null;
   }
 };
