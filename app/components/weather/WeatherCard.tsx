@@ -49,7 +49,7 @@ const WeatherCard = () => {
         <p>Feels like {Math.round(weatherData.main.feels_like)}°</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 ">
+      <div className="grid grid-cols-2 gap-4 w-full">
         <WeatherStats>
           <Image
             src="./wind.svg"
@@ -108,7 +108,7 @@ const WeatherStats: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
-    <div className="glassy-box rounded-2xl px-8 py-4 grid place-items-center">
+    <div className="glassy-box rounded-2xl px-8 py-4 grid place-items-center w-full ">
       {children}
     </div>
   );

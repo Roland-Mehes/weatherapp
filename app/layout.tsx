@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rubik.className} mx-3 md:mx-30 `}>
+      <body className={`${rubik.className} `}>
         <Navbar />
         {children}
         <ToastProvider />

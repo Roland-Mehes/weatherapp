@@ -5,7 +5,7 @@
   --color-primary: hsl(255, 255, 255, var(--opacity));
   --color-primary: rgba(255, 255, 255, 1);
   --color-secondary: rgba(255, 255, 255, 0.8);
-  --color-glassy: rgba(255, 255, 255, 0.2);
+  --color-glassy: rgba(255, 255, 255, 0.1);
   --color-bg: #004c7e;
   --color-text: #333333;
 
@@ -29,7 +29,7 @@ input:active {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .glassy-container {

@@ -54,7 +54,7 @@ const Forecast = () => {
         >
           {dailyForecast.map((day) => (
             <SwiperSlide key={day.dt}>
-              <div className="glassy-box rounded-xl flex flex-col items-center p-5 gap-2 h-[180px]">
+              <div className="glassy-box !border-0 rounded-xl flex flex-col items-center  p-2 h-[110px] ">
                 <p className="font-semibold">
                   {new Intl.DateTimeFormat('en-GB', {
                     weekday: 'short',
@@ -66,7 +66,8 @@ const Forecast = () => {
                     <Image
                       src={iconMap[day.weather[0].icon]}
                       alt={day.weather[0].description}
-                      fill
+                      height={30}
+                      width={36}
                       className="object-contain"
                     />
                   )}

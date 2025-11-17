@@ -7,26 +7,33 @@ import getGeoLocation from '../utils/getGeoLocation';
 
 interface WeatherState {
   weather: WeatherData | null;
+  loading: boolean;
   fetchWeather: (city: string) => Promise<void>;
   fetchWeatherByLocation: () => Promise<void>;
 }
 
 export const useWeatherStore = create<WeatherState>((set) => ({
   weather: null,
+  loading: false,
   fetchWeather: async (city: string) => {
     if (!city) return;
 
-    const data = await getCurrentWeather(city);
+    set({ loading: true });
 
-    if (!data) {
-      toast.error(`City ${city} not found or failed to fetch data.`);
-      return;
+    try {
+      const data = await getCurrentWeather(city);
+      if (!data) {
+        toast.error(`City ${city} not found or failed to fetch data.`);
+        return;
+      }
+      set({ weather: data });
+    } finally {
+      set({ loading: false });
     }
-
-    set({ weather: data });
   },
 
   fetchWeatherByLocation: async () => {
+    set({ loading: true });
     try {
       const geo = await getGeoLocation();
 
@@ -57,6 +64,8 @@ export const useWeatherStore = create<WeatherState>((set) => ({
       if (fallbackData) {
         set({ weather: fallbackData });
       }
+    } finally {
+      set({ loading: false });
     }
   },
 }));
