@@ -25,8 +25,8 @@ const WeatherCard = () => {
     : '';
 
   return (
-    <div className="inline-flex flex-col glassy-container items-center text-center gap-6">
-      <div className="grid gap-2">
+    <div className=" flex flex-col glassy-container items-center text-center gap-6 max-w-full">
+      <div className="grid  gap-2">
         <h3>
           {weatherData.name}, {weatherData.sys.country}
         </h3>
@@ -44,7 +44,7 @@ const WeatherCard = () => {
             style={{ width: 100, height: 100 }}
           />
         )}
-        <h1 className="text-7xl">{Math.round(weatherData.main.temp)}°</h1>
+        <span className="text-7xl">{Math.round(weatherData.main.temp)}°</span>
         <h3>{weatherData.weather.map((w) => w.main).join(', ')}</h3>
         <p>Feels like {Math.round(weatherData.main.feels_like)}°</p>
       </div>

@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex flex-col md:flex-row md:justify-between md:items-center mt-4 w-full gap-4 md:gap-10 md:px-10  px-3 
+      className={`flex flex-col lg:flex-row lg:justify-between lg:items-center mt-6 w-full gap-4 lg:gap-10 lg:px-26  px-3 
         `}
     >
       <Link href="/">
@@ -40,9 +40,9 @@ const Navbar = () => {
       </Link>
 
       <div className=" w-full md:w-auto flex place-items-center gap-4">
-        <div className="relative w-full md:w-64 ">
+        <div className="relative w-full lg:max-w-[306px] ">
           <input
-            className="p-2 glassy-box rounded-[var(--border-radius-sm)] focus:outline-none w-full"
+            className="p-2 glassy-box rounded-[var(--border-radius-sm)] focus:outline-none w-full lg:max-w-[306px]"
             placeholder="Search city..."
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -55,7 +55,7 @@ const Navbar = () => {
             <HiMagnifyingGlass size={20} />
           </button>
         </div>
-        <div className="glassy-box rounded-xl py-1.5 px-1 ">
+        <div className="glassy-box rounded-xl py-2 px-2 ">
           <TbRefresh
             size={25}
             className="hover:-rotate-35 transition cursor-pointer"

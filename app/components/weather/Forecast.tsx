@@ -39,22 +39,24 @@ const Forecast = () => {
   if (!weather) return;
 
   return (
-    <div className="glassy-box rounded-[var(--border-radius-md)] p-5">
+    <div className="glassy-box rounded-[var(--border-radius-md)] p-5 overflow-hidden">
       <h2 className="mb-4">5- Day Forecast</h2>
 
       {dailyForecast.length > 0 ? (
         <Swiper
-          spaceBetween={16}
-          slidesPerView={3.5}
+          spaceBetween={15}
+          slidesPerView={4.5}
           breakpoints={{
-            320: { slidesPerView: 2.5 },
-            640: { slidesPerView: 3.5 },
-            1024: { slidesPerView: 3.5 },
+            320: { slidesPerView: 2.2 },
+            480: { slidesPerView: 2.8 },
+            640: { slidesPerView: 3.2 },
+            1024: { slidesPerView: 4 },
+            1280: { slidesPerView: 5 },
           }}
         >
           {dailyForecast.map((day) => (
             <SwiperSlide key={day.dt}>
-              <div className="glassy-box !border-0 rounded-xl flex flex-col items-center  p-2 h-[110px] ">
+              <div className="glassy-box !border-0 rounded-xl flex flex-col items-center  py-3 px-2 h-auto  w-full md:max-w-[100px] lg:max-w-[140px] ">
                 <p className="font-semibold">
                   {new Intl.DateTimeFormat('en-GB', {
                     weekday: 'short',
